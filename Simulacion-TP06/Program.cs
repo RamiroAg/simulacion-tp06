@@ -11,7 +11,7 @@ namespace Simulacion_TP06
     {
         static void Main(string[] args)
         {
-            double t = 0, tpll = 0, ill, ta, endTime, na = 0;
+            double t = 0, tpll = 0, ill, ta, endTime;
             endTime = 10;
 
             Random random = new Random();
@@ -59,7 +59,7 @@ namespace Simulacion_TP06
                 {
                     if (Services.arrepentimiento(puestoI.tiempoComprometido - t))
                     {
-                         na++;
+                         puestoI.NArrepentidos++;
                     }
                     else
                     {
@@ -89,7 +89,7 @@ namespace Simulacion_TP06
             for (int j = 0; j < puestos.Length; j++)
             {
                 Console.WriteLine("PUESTO {0}", j);
-                Console.WriteLine(" - PTO{0}: {1}", j, puestos[j].sumTiempoOcioso * 100 / t);
+                Console.WriteLine(" - PTO{0}: {1} %", j, puestos[j].sumTiempoOcioso * 100 / t);
                 Console.WriteLine(" - PTE{0}: {1}", j, puestos[j].sumatoriaTE / puestos[j].NT);
                 Console.WriteLine();
 
@@ -97,7 +97,9 @@ namespace Simulacion_TP06
                 NTTotal += puestos[j].NT;
             }
 
-            Console.WriteLine("PORCENTAJE DE PERSONAS ARREPENTIDAS: {0}", totalArrepentidos * 100 / NTTotal);
+            Console.WriteLine("TOTAL LLAMADAS PROCESADAS: {0}", NTTotal);
+            Console.WriteLine("PORCENTAJE DE PERSONAS ARREPENTIDAS: {0} %", totalArrepentidos * 100 / NTTotal);
+            Console.WriteLine("Presione cualquier tecla para finalizar");
 
 
             //Impresión de resultados

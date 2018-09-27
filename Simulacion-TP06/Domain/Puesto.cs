@@ -18,6 +18,8 @@ namespace Simulacion_TP06.Domain
 
         public int NArrepentidosConPerdidas { get; set; }
 
+        public int cantEntrantes { get; set; }
+
         public double NT { get; set; }
 
         public double sumatoriaTE { get; set; }
@@ -31,6 +33,7 @@ namespace Simulacion_TP06.Domain
             NArrepentidos = 0;
             NArrepentidosConPerdidas = 0;
             NT = 0;
+            cantEntrantes = 0;
         }
 
         public static Puesto GetPuestoMenorTC(Puesto[] puestos)

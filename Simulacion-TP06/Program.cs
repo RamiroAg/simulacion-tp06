@@ -11,11 +11,10 @@ namespace Simulacion_TP06
     {
         static void Main(string[] args)
         {
-            int cantSalientes = 0;
             double t = 0, tpll = 0, ill, ta, endTime;
             endTime = 10;
-            Boolean esEntrante = false;
-
+            Boolean esEntrante = false;        
+     
             Random random = new Random();
 
             Console.WriteLine("Simulación - TP 06");
@@ -63,6 +62,7 @@ namespace Simulacion_TP06
                 {
                     ta = Services.getTiempoAtencionEntrante();
                     esEntrante = true;
+                    puestoI.cantEntrantes++;
                 }
 
 
@@ -71,6 +71,7 @@ namespace Simulacion_TP06
                     if (esEntrante && Services.arrepentimiento(puestoI.tiempoComprometido - t))
                     {
                          puestoI.NArrepentidos++;
+                        puestoI.cantEntrantes--;
                         if (random.Next(0,100) < 30)
                         {
                             puestoI.NArrepentidosConPerdidas++;
@@ -78,7 +79,11 @@ namespace Simulacion_TP06
                     }
                     else
                     {
-                        puestoI.sumatoriaTE += (puestoI.tiempoComprometido - t);
+                        if (esEntrante)
+                        {
+                            puestoI.sumatoriaTE += (puestoI.tiempoComprometido - t);
+                        }
+                       
                         puestoI.tiempoComprometido += ta;
                     }
                 }
@@ -108,7 +113,7 @@ namespace Simulacion_TP06
 
                 Console.WriteLine("PUESTO {0}", j);
                 Console.WriteLine(" - PTO{0}: {1} %", j, puestos[j].sumTiempoOcioso * 100 / t);
-                Console.WriteLine(" - PTE{0}: {1}", j, puestos[j].sumatoriaTE / puestos[j].NT);
+                Console.WriteLine(" - PTE{0}: {1}", j, puestos[j].sumatoriaTE / puestos[j].cantEntrantes);
                 Console.WriteLine();
                 ganancias += puestos[j].NS * random.Next(300/12, 20000/12);
                 perdidas += puestos[j].NArrepentidosConPerdidas * random.Next(300/6, 20000/6);          

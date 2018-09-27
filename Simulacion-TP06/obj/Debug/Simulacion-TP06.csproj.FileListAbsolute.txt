@@ -1,0 +1,7 @@
+C:\Users\Benja\Projects\UTN\Simulacion\simulacion-tp06\Simulacion-TP06\bin\Debug\Simulacion-TP06.exe.config
+C:\Users\Benja\Projects\UTN\Simulacion\simulacion-tp06\Simulacion-TP06\bin\Debug\Simulacion-TP06.exe
+C:\Users\Benja\Projects\UTN\Simulacion\simulacion-tp06\Simulacion-TP06\bin\Debug\Simulacion-TP06.pdb
+C:\Users\Benja\Projects\UTN\Simulacion\simulacion-tp06\Simulacion-TP06\obj\Debug\Simulacion-TP06.csprojAssemblyReference.cache
+C:\Users\Benja\Projects\UTN\Simulacion\simulacion-tp06\Simulacion-TP06\obj\Debug\Simulacion-TP06.csproj.CoreCompileInputs.cache
+C:\Users\Benja\Projects\UTN\Simulacion\simulacion-tp06\Simulacion-TP06\obj\Debug\Simulacion-TP06.exe
+C:\Users\Benja\Projects\UTN\Simulacion\simulacion-tp06\Simulacion-TP06\obj\Debug\Simulacion-TP06.pdb

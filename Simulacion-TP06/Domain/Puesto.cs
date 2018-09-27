@@ -16,6 +16,8 @@ namespace Simulacion_TP06.Domain
 
         public int NArrepentidos { get; set; }
 
+        public int NArrepentidosConPerdidas { get; set; }
+
         public double NT { get; set; }
 
         public double sumatoriaTE { get; set; }
@@ -27,6 +29,7 @@ namespace Simulacion_TP06.Domain
             sumTiempoOcioso = 0;
             NS = 0;
             NArrepentidos = 0;
+            NArrepentidosConPerdidas = 0;
             NT = 0;
         }
 

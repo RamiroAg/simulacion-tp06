@@ -11,8 +11,10 @@ namespace Simulacion_TP06
     {
         static void Main(string[] args)
         {
+            int cantSalientes = 0;
             double t = 0, tpll = 0, ill, ta, endTime;
             endTime = 10;
+            Boolean esEntrante = false;
 
             Random random = new Random();
 
@@ -48,18 +50,31 @@ namespace Simulacion_TP06
                 if (r < 90)
                 {
                     ta = Services.getTiempoAtencionSaliente();
+                    if (random.Next(0,100) < 50)
+                    {
+                        if (random.Next(0, 100) < 70)
+                        {
+                            puestoI.NS++;
+                        }
+                    }      
+                    esEntrante = false;
                 }
                 else
                 {
                     ta = Services.getTiempoAtencionEntrante();
+                    esEntrante = true;
                 }
 
 
                 if (t <= puestoI.tiempoComprometido)
                 {
-                    if (Services.arrepentimiento(puestoI.tiempoComprometido - t))
+                    if (esEntrante && Services.arrepentimiento(puestoI.tiempoComprometido - t))
                     {
                          puestoI.NArrepentidos++;
+                        if (random.Next(0,100) < 30)
+                        {
+                            puestoI.NArrepentidosConPerdidas++;
+                        }
                     }
                     else
                     {
@@ -83,15 +98,20 @@ namespace Simulacion_TP06
             //PTE: promedio de tiempo de espera por puesto(Segundos)
             //PPA: porcentaje de personas arrepentidas(número de personas) respecto al total
             double totalArrepentidos = 0, NTTotal = 0;
+            double ganancias = 0, perdidas = 0, gastos = n * 20000/20;
+
 
             Console.WriteLine();
             Console.WriteLine(" - CUADRO DE RESULTADOS");
             for (int j = 0; j < puestos.Length; j++)
             {
+
                 Console.WriteLine("PUESTO {0}", j);
                 Console.WriteLine(" - PTO{0}: {1} %", j, puestos[j].sumTiempoOcioso * 100 / t);
                 Console.WriteLine(" - PTE{0}: {1}", j, puestos[j].sumatoriaTE / puestos[j].NT);
                 Console.WriteLine();
+                ganancias += puestos[j].NS * random.Next(300/12, 20000/12);
+                perdidas += puestos[j].NArrepentidosConPerdidas * random.Next(300/6, 20000/6);          
 
                 totalArrepentidos += puestos[j].NArrepentidos;
                 NTTotal += puestos[j].NT;
@@ -99,6 +119,7 @@ namespace Simulacion_TP06
 
             Console.WriteLine("TOTAL LLAMADAS PROCESADAS: {0}", NTTotal);
             Console.WriteLine("PORCENTAJE DE PERSONAS ARREPENTIDAS: {0} %", totalArrepentidos * 100 / NTTotal);
+            Console.WriteLine("INGRESOS: {0}", ganancias - gastos - perdidas);
             Console.WriteLine("Presione cualquier tecla para finalizar");
 
 

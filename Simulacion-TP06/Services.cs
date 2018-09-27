@@ -11,11 +11,11 @@ namespace Simulacion_TP06
         public static double getIntervaloEntreLlamadas()
         {
             double x, y;
-            double a = 0.67736, b = 10.099;
+            double a = 0.7666, b = 1051;
             Random r = new Random();
             y = r.NextDouble();
 
-            x = a * Math.Pow(Math.Log(1 - y), 1 / b);
+            x = a * Math.Pow(- Math.Log(1 - y), 1 / b);
 
             return x;
         }
@@ -23,12 +23,12 @@ namespace Simulacion_TP06
         public static double getTiempoAtencionSaliente()
         {
             double x, y;
-            double a = 4.0361, b = 1.4677, k = 0.16281;
+            double a = 1.1352, b = 5.6551;
             Random r = new Random();
             y = r.NextDouble();
 
-            double argRaiz = -k - (k / Math.Pow(y - 1, 1 / a));
-            x = Math.Pow(argRaiz, 1 / b);
+            double argRaiz = (1/y) - 1;
+            x = b / Math.Pow(argRaiz, 1 / a);
 
             return x;
         }
@@ -46,9 +46,35 @@ namespace Simulacion_TP06
             return x;
         }
 
-        internal static bool arrepentimiento(object p)
+        internal static bool arrepentimiento(double tiempoEspera)
         {
-            throw new NotImplementedException();
+            bool arrepentimiento;
+            // e > 5min
+            if (tiempoEspera >= (60 * 5))
+            {
+                arrepentimiento = true;
+            }
+            else
+            {
+                if (tiempoEspera <= (2 * 60))
+                {
+                    arrepentimiento = false;
+                }
+                else
+                {
+                    Random r = new Random();
+                    if (r.NextDouble() <= 0.4)
+                    {
+                        arrepentimiento = false;
+                    }
+                    else
+                    {
+                        arrepentimiento = true;
+                    }
+                }
+            }
+            return arrepentimiento;
+
         }
     }
 }

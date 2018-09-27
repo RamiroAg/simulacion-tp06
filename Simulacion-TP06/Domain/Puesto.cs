@@ -20,6 +20,7 @@ namespace Simulacion_TP06.Domain
 
         public double sumatoriaTE { get; set; }
 
+
         public Puesto()
         {
             tiempoComprometido = 0;
@@ -31,7 +32,7 @@ namespace Simulacion_TP06.Domain
 
         public static Puesto GetPuestoMenorTC(Puesto[] puestos)
         {
-            return puestos.OrderByDescending(p => p.tiempoComprometido)
+            return puestos.OrderBy(p => p.tiempoComprometido)
                     .FirstOrDefault();
         }
     }

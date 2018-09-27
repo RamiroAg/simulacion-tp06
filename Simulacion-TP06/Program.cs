@@ -17,10 +17,15 @@ namespace Simulacion_TP06
             Random random = new Random();
 
             Console.WriteLine("Simulación - TP 06");
-            Console.WriteLine("Ingrese la cantidad de puestos de atención: ");
+            Console.Write("Ingrese la cantidad de puestos de atención: ");
             int.TryParse(Console.ReadLine(), out int n);
-            Console.WriteLine("La simulación se realizará con {0} puestos de atención", n);
-            
+            Console.Write("Ingrese la duración de la simulación (en horas): ");
+            int.TryParse(Console.ReadLine(), out int tiempoSimulacion);
+            endTime = tiempoSimulacion * 3600;
+
+            Console.WriteLine();
+            Console.WriteLine("Simulación en proceso...");
+            Console.WriteLine();
 
             //Inicializo array de puestos
             Puesto[] puestos = new Puesto[n];
@@ -74,6 +79,26 @@ namespace Simulacion_TP06
 
 
             //Cálculo de resultados
+            //PTO(i): porcentaje de tiempo ocioso de cada puesto(Segundos)
+            //PTE: promedio de tiempo de espera por puesto(Segundos)
+            //PPA: porcentaje de personas arrepentidas(número de personas) respecto al total
+            double totalArrepentidos = 0, NTTotal = 0;
+
+            Console.WriteLine();
+            Console.WriteLine(" - CUADRO DE RESULTADOS");
+            for (int j = 0; j < puestos.Length; j++)
+            {
+                Console.WriteLine("PUESTO {0}", j);
+                Console.WriteLine(" - PTO{0}: {1}", j, puestos[j].sumTiempoOcioso * 100 / t);
+                Console.WriteLine(" - PTE{0}: {1}", j, puestos[j].sumatoriaTE / puestos[j].NT);
+                Console.WriteLine();
+
+                totalArrepentidos += puestos[j].NArrepentidos;
+                NTTotal += puestos[j].NT;
+            }
+
+            Console.WriteLine("PORCENTAJE DE PERSONAS ARREPENTIDAS: {0}", totalArrepentidos * 100 / NTTotal);
+
 
             //Impresión de resultados
 
